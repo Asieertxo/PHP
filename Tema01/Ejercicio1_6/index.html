@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="./css/estilos.css">
+</head>
+<body>
+    <form class="formulario" action="./php/notas.php" method="POST" enctype="multipart/form-data">
+        <h1>Escriba su nombre y nota</h1>
+        <input type="text" id="nombre" name="nombre">
+        <input type="number" id="nota" name="nota" min="0" max="10">
+        <input type="submit" value="Enviar">
+    </form>
+</body>

@@ -1,0 +1,25 @@
+/*Estilos del PHP*/
+.padre{
+    position: relative;
+    margin-top: 500px;
+}
+.hijo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+}
+
+.verde{
+    background-color: green;
+}
+.rojo{
+    background-color: red;
+}
+
+
+/*Estilos del HTML*/
+.formulario{
+    text-align: center;
+}

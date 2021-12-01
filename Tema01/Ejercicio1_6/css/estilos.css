@@ -1,0 +1,19 @@
+.padre{
+    margin-top: 500px;
+    position: relative;
+}
+.hijo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 50px;
+}
+
+.verde{
+    background-color: rgb(80, 196, 80);
+}
+.rojo{
+    background-color: rgb(224, 89, 89);
+}
