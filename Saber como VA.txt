@@ -1,0 +1,115 @@
+﻿Terma 1:
+ Ejercicio1 -> Terminado
+ Ejercicio2 -> Terminado
+ Ejercicio3 -> Terminado
+ Ejercicio4 -> Mejor CSS
+ Ejercicio5 -> No hay que hacerlo
+ Ejercicio6 -> Mejor CSS
+ Ejercicio7 -> Mejor CSS
+ Ejercicio8 -> Mejor CSS y hacer todos los apartados
+
+Tema 2:
+ Ejercicio1 ->
+ Ejercicio2 -> Todo hecho, falta el error de que no se encuentra ese numero de expediente
+ Ejercicio3 -> Terminado*
+
+Tema 3:
+ Ejercicio1 -> Terminado
+ Ejercicio2 -> Terminado (puedo mirar el bucle en el formulario)
+ Ejercicio3 -> Terminado
+
+Tema 5:
+ Ejercicio1 -> Terminado
+ Ejercicio2 -> Terminado
+ Ejercicio3 -> Terminado pero mejorar el CV
+ Ejercicio4 -> Terminado
+
+Mejorar y poner paginas primero que nos lleve a los ejercicios que tengan varios apartados
+Mejorar estructura de carpetas (cada ejercicio ya esta bien, cambiar nombres)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*ejercicio 2 del tema 3*/
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../css/estilos.css">
+</head>
+<body>
+
+    <?php
+
+        function formulario(){
+            $verbos = [
+                array("be","was","been"),
+                array("begin","began","begun"),
+                array("bend","bent","bent"),
+                array("bite","bit","bitten"),
+                array("blow","blew","blown"),
+                array("break","broke","broken"),
+                array("buind","built","built"),
+                array("buy","bought","bought"),
+            ];
+            $verbosesp = array("ser", "empezar", "doblar", "morder", "soplar", "romper", "construir", "comprar");
+            
+            echo<<<EOD
+                        <form action="./index.php" method="POST" enctype="multipart/form-data">
+                            <table>
+                                <caption>Irregular Verbs</caption>
+                                <tr>
+                                    <td>Castellano</td>
+                                    <td>Infinitive</td>
+                                    <td>Past Simple</td>
+                                    <td>Participle</td>
+                                </tr>
+            EOD;
+                                for($i=0; $i<count($verbos); $i++){
+                                    echo>>>PINT
+                                        <tr>
+                                            <td>$verbosesp[$i]</td>
+                                            <td><input type='text' name='verbs[$i][1]' id='infinitive'></td>
+                                            <td><input type='text' name='verbs[$i][2]' id='past_simple'></td>
+                                            <td><input type='text' name='verbs[$i][3]' id='participle'></td>
+                                        </tr>
+PINT;
+                                }
+                            echo "</table>";
+                            
+                            echo "<input type='submit' name='enviar' value='enviar datos'/>";
+                        echo "</form>";
+        }
+
+        function salida($aciertos, $errores){
+            echo "<div class='padre'><div class='hijo'>";
+            echo "&nbsp;<p class='txt'>- Nº de aciertos: " . $aciertos."</p></br>";
+            echo "&nbsp;<p class='txt'>- Nº de errores: " . $errores."</p></br>";
+            echo "</div></div>";
+        }
+
+    ?>
+
+
+    
+</body>
