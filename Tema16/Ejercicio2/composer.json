@@ -1,0 +1,17 @@
+{
+        "name": "lic/print",
+        "description": "Hola mundo en composer",
+        "authors": [
+                {
+                        "name": "Asier",
+                        "email": "asgalo@live.com"
+                }
+        ],
+        "require": {},
+        "autoload": {
+                "psr-4": {
+                        "lic\\hello\\": "src/",
+                        "lic\\estilos\\": "src/"
+                }
+        }
+}

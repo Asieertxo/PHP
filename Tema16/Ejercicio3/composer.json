@@ -1,0 +1,19 @@
+{
+        "name": "lic/book",
+        "description": "CRUD en php",
+        "authors": [
+                {
+                        "name": "Asier",
+                        "email": "asgalo@live.com"
+                }
+        ],
+        "require": {},
+        "autoload": {
+                "psr-4": {
+                        "lic\\VerLibros\\": "src/",
+                        "lic\\SubirLibros\\": "src/",
+                        "lic\\ModLibros\\": "src/",
+                        "lic\\DeleteLibros\\": "src/"
+                }
+        }
+}
