@@ -1,60 +1,37 @@
 <?php
 include __DIR__ .  "/../vendor/autoload.php";
 echo "<link rel='stylesheet' type='text/css' href='./estilos.css'>";//importar css
+include "./../src/Connection.php";
 
+$conection = conection();
 
 //comprobamos que no se esta realizando ninguna accion con los datos, si no se esta haciendo nada mostramos el formulario inicial
 if (!isset ($_POST['subir']) && !isset ($_POST['ver']) && !isset ($_POST['mod']) && !isset ($_POST['del']) &&
-    !isset ($_GET['pag']) && !isset ($_POST['insert']) && !isset ($_POST['update']) && !isset ($_POST['delete'])){
+    !isset ($_GET['pag']) && !isset ($_POST['insert']) && !isset ($_POST['update']) && !isset ($_POST['delete']) && !isset ($_GET['update']) && !isset ($_GET['delete'])){
 
-    echo formulario();
+    echo formulario(); 
+    
 }else{
     //sino vemos si se ha dado a algun boton principal
-    if(isset ($_POST['ver'])){
+    if(isset ($_POST['ver']) || (isset($_GET['pag']))){
         $ver_libros = new \lic\VerLibros\VerLibros();
-        $ver_libros->verlibros();
+        $ver_libros->verlibros($conection);
 
-    }elseif(isset ($_POST['subir'])){
+    }elseif(isset ($_POST['subir']) || (isset ($_POST['insert']))){
         $subir_libros = new \lic\SubirLibros\SubirLibros();
-        $subir_libros->subirlibros();
+        $subir_libros->subirlibros($conection);
 
-    }elseif(isset ($_POST['mod'])){
+    }elseif(isset ($_POST['mod']) || (isset ($_POST['update'])) || (isset ($_GET['update']))){
         $mod_libros = new \lic\ModLibros\ModLibros();
-        $mod_libros->modlibros();
-    }elseif(isset ($_POST['del'])){
+        $mod_libros->modlibros($conection);
+        
+    }elseif(isset ($_POST['del']) || (isset ($_POST['delete'])) || (isset ($_GET['delete']))){
         $delete_libros = new \lic\DeleteLibros\DeleteLibros();
-        $delete_libros->deletelibros();
+        $delete_libros->deletelibros($conection);
     }
 }
 
-
-
-
-//hacer SELECT en la base de datos
-if(isset($_GET['pag'])){
-    $ver_libros = new \lic\VerLibros\VerLibros();
-    $ver_libros->verlibros();
-}
-//hacer INSERT en la base de datos
-if(isset ($_POST['insert'])){
-    $subir_libros = new \lic\SubirLibros\SubirLibros();
-    $subir_libros->subirlibros();
-}
-//hacer UPDATE en la base de datos
-if(isset ($_POST['update'])){
-    $mod_libros = new \lic\ModLibros\ModLibros();
-    $mod_libros->modlibros();
-}
-//hacer DELETE en la base de datos
-if(isset ($_POST['delete'])){
-    $delete_libros = new \lic\DeleteLibros\DeleteLibros();
-    $delete_libros->deletelibros();
-}
-
-
-
-
-
+closeconection($conection);
 
 
 

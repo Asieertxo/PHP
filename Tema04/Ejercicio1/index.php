@@ -7,7 +7,7 @@
 <body>
 
     <?php
-        include './php/funciones.php';
+        require './php/funciones.php';
 
         if(!isset ($_POST['cadena']) || !isset ($_POST['caracter'])){
             echo formulario();

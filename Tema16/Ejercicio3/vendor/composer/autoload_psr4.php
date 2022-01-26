@@ -10,4 +10,5 @@ return array(
     'lic\\SubirLibros\\' => array($baseDir . '/src'),
     'lic\\ModLibros\\' => array($baseDir . '/src'),
     'lic\\DeleteLibros\\' => array($baseDir . '/src'),
+    'lic\\Connection\\' => array($baseDir . '/src'),
 );

@@ -5,24 +5,8 @@ echo "<link rel='stylesheet' type='text/css' href='./estilos.css'>";//importar c
 
 class VerLibros{//abrir la clase
 
-public function verlibros(){//funcion de la clase
-    $SERVERNAME = "localhost";
-    $USERNAME = "root";
-    $PASSWORD = "";
-    $DBNAME = "libros";
+public function verlibros($conection){//funcion de la clase
 
-    //Crear conexion, le pongo @ ya que despues compruebo si la conexion se ha realizaqdo bien
-    @$conection = mysqli_connect($SERVERNAME, $USERNAME, $PASSWORD, $DBNAME);
-
-
-    //Comprobar la conexion la conexion
-    if (!$conection) {
-        echo "<h2 class='rojo'>Error de conexion: </h1>" . mysqli_connect_error();
-        die();
-    }else{
-        echo "<h2 class='verde'>Conexion satisfactoria</h1>";
-    }
-//////////////////////////////////////////////////////////////////////////////////////
 
     //determinamos los limites de la sentencia SQL
     $limit = 0;
@@ -46,14 +30,25 @@ public function verlibros(){//funcion de la clase
         //pinta las filas sacadas con el limit
         echo "<div class='contenedor'>";
         echo "<table class='tabla'>";
+        echo "<tr>";
+            echo "<td><b>ID:</b></td>   ";
+            echo "<td><b>ISBN:</b></td>";
+            echo "<td><b>Title:</b></td>";
+            echo "<td><b>Author:</b></td>";
+            echo "<td><b>Stock:</b></td>";
+            echo "<td><b>Price:</b></td>";
+            echo "<td><b>Modificar:</b></td>";
+        echo "</tr>";
+        
         while($row = mysqli_fetch_assoc($result_limit)) {
             echo "<tr>";
-                echo "<td><b>ID:</b> $row[id] &nbsp;</td>   ";
-                echo "<td><b>ISBN:</b> $row[isbn] &nbsp;</td>";
-                echo "<td><b>Title:</b> $row[title] &nbsp;</td>";
-                echo "<td><b>Author:</b> $row[author] &nbsp;</td>";
-                echo "<td><b>Stock:</b> $row[stock] &nbsp;</td>";
-                echo "<td><b>Price:</b> $row[price] &nbsp;</td>";
+                echo "<td>$row[id]</td>   ";
+                echo "<td>$row[isbn]</td>";
+                echo "<td>$row[title]</td>";
+                echo "<td>$row[author]</td>";
+                echo "<td>$row[stock]</td>";
+                echo "<td>$row[price]</td>";
+                echo "<td><a class='boton' href='./index.php?id=$row[id]&update=true'>Modificar</a><a class='boton' href='./index.php?id=$row[id]&delete=true'>Eliminar</a></td>";
             echo "</tr>";
         }
         echo "</table>";
@@ -81,10 +76,11 @@ public function verlibros(){//funcion de la clase
     echo "</div>";
     echo "<a class='atras' href='./index.php'>Atras</a>";
 
+
 //////////////////////////////////////////////////////////////////////////////////////
-    mysqli_close($conection);
-        }
-    }
+
+    
+}}
 
 ?>
 

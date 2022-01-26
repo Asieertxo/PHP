@@ -28,6 +28,16 @@ h2{
     border-radius: 10px;
     background-color: wheat;
     font-size: 30px;
+    /*border-collapse: separate;*/
+}
+
+th, td{
+    padding: 5px 30px 0 30px;
+}
+
+.boton{
+    font-size: 20px;
+    border-radius: 5px;
 }
 
 .paginas{

@@ -13,6 +13,7 @@ class ComposerStaticInit9151a8e4752dde60d4da400346023b0b
             'lic\\SubirLibros\\' => 16,
             'lic\\ModLibros\\' => 14,
             'lic\\DeleteLibros\\' => 17,
+            'lic\\Connection\\' => 15,
         ),
     );
 
@@ -30,6 +31,10 @@ class ComposerStaticInit9151a8e4752dde60d4da400346023b0b
             0 => __DIR__ . '/../..' . '/src',
         ),
         'lic\\DeleteLibros\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
+        'lic\\Connection\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),

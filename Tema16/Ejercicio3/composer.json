@@ -10,6 +10,7 @@
         "require": {},
         "autoload": {
                 "psr-4": {
+                        "lic\\Connection\\": "src/",
                         "lic\\VerLibros\\": "src/",
                         "lic\\SubirLibros\\": "src/",
                         "lic\\ModLibros\\": "src/",
