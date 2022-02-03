@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<movies>
+    
+    <movie id="2">
+        <title>Pelicula2</title>
+        <gender>Comedia</gender>
+        <director>Pedro</director>
+        <release>2020</release>
+        <country>EEUU</country>
+    </movie>
+    <movie id="3">
+        <title>Pelicula3</title>
+        <gender>Drama</gender>
+        <director>Pablo</director>
+        <release>2019</release>
+        <country>Francia</country>
+    </movie>
+    <movie id="4">
+        <title>Pelicula4</title>
+        <gender>Accion</gender>
+        <director>Maria</director>
+        <release>2005</release>
+        <country>Espa&#xF1;a</country>
+    </movie>
+    <movie id="5">
+        <title>Pelicula5</title>
+        <gender>Drama</gender>
+        <director>Felipe</director>
+        <release>2016</release>
+        <country>EEUU</country>
+    </movie>
+    <movie id="6">
+        <title>Pelicula6</title>
+        <gender>Accion</gender>
+        <director>Antonio</director>
+        <release>2021</release>
+        <country>Francia</country>
+    </movie>
+</movies>
