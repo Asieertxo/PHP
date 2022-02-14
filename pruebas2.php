@@ -1,16 +1,22 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php
-        setcookie('Fecha', date('T-m-d H:i:s'));
-        setcookie('preferencias[idioma]', 'español');
-        setcookie('preferemcias[fondo]', 'rojo');
-    ?>
-    <p>holaaa</p>
-</body>
-</html>
+<?php
+$conn =new mysqli('localhost', 'root', 'root', 'libros');
+
+$query = '';
+$sqlScript = file('Libros.sql');
+foreach ($sqlScript as $line)   {
+        
+        $startWith = substr(trim($line), 0 ,2);
+        $endWith = substr(trim($line), -1 ,1);
+        
+        if (empty($line) || $startWith == '--' || $startWith == '/*' || $startWith == '//') {
+                continue;
+        }
+                
+        $query = $query . $line;
+        if ($endWith == ';') {
+                mysqli_query($conn,$query) or die('<div class="error-response sql-import-response">Problem in executing the SQL query <b>' . $query. '</b></div>');
+                $query= '';             
+        }
+}
+echo '<div class="success-response sql-import-response">SQL file imported successfully</div>';
+?>
