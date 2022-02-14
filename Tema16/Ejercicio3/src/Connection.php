@@ -3,7 +3,7 @@
 function conection(){
     $SERVERNAME = "localhost";
     $USERNAME = "root";
-    $PASSWORD = "";
+    $PASSWORD = "root";
     $DBNAME = "libros";
 
     //Crear conexion, le pongo @ ya que despues compruebo si la conexion se ha realizaqdo bien
