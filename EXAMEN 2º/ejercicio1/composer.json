@@ -1,0 +1,17 @@
+{
+    "name": "",
+    "description": "Examen",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Clases\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "exam ",
+            "email": "exam@gmail.com"
+        }
+    ],
+    
+}
