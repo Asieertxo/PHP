@@ -7,6 +7,7 @@ $result = mysqli_query($conection, $sql);
 
 
 echo <<<EOD
+    <h2>Elije tipo:</h2>
     <form action="./zona.php" method="POST" enctype="multipart/form-data">
         <select id="tipo" name="tipo">
 EOD;

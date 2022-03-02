@@ -7,7 +7,7 @@ $_SESSION['dormitorios'] = $_POST['dormitorios'];
 $_SESSION['precio'] = $_POST['precio'];
 
 echo <<<EOD
-    <h2>Elije zona:</h2>
+    <h2>Elije extras:</h2>
     <form action="./resultado.php" method="POST" enctype="multipart/form-data">
         <input type="checkbox" id="extras" name="jardin" value="jardin" /><label>jardin</label>
         <input type="checkbox" id="extras" name="piscina" value="piscina" /><label>piscina</label>

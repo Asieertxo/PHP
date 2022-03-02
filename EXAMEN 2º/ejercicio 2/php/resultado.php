@@ -37,37 +37,41 @@ if(isset ($_POST['padel'])){
 $sql= "SELECT * FROM `viviendas` WHERE tipo='$tipo' AND zona='$zona' AND dormitorios='$dormitorios' AND jardin='$jardin' AND piscina='$piscina' AND zonascomunes='$zonascomunes' AND garage='$garage' AND padel='$padel'";
 $result = mysqli_query($conection, $sql);
 
-
-echo "<table>";
-echo "<tr>";
-    echo "<td>Tipo</td>";
-    echo "<td>Zona</td>";
-    echo "<td>Dormitorios</td>";
-    echo "<td>Precio</td>";
-    echo "<td>Jardin</td>";
-    echo "<td>Piscina</td>";
-    echo "<td>Zonas Comunes</td>";
-    echo "<td>Garaje</td>";
-    echo "<td>Padel</td>";
-    echo "<td>Foto</td>";
-    echo "<td>Comprar</td>";
-echo "</tr>";
-while($row = mysqli_fetch_assoc($result)){
+if(mysqli_num_rows($result) > 0){
+    echo "<table>";
     echo "<tr>";
-        echo "<td>".$row['tipo']."</td>";
-        echo "<td>".$row['zona']."</td>";
-        echo "<td>".$row['dormitorios']."</td>";
-        echo "<td>".$row['precio']."</td>";
-        echo "<td>".$row['jardin']."</td>";
-        echo "<td>".$row['piscina']."</td>";
-        echo "<td>".$row['zonascomunes']."</td>";
-        echo "<td>".$row['garage']."</td>";
-        echo "<td>".$row['padel']."</td>";
-        echo "<td><img src=".$row['imagen']."></td>";
-        echo "<td><a href='./comprar.php'>Comprar</a></td>";
+        echo "<td>Tipo</td>";
+        echo "<td>Zona</td>";
+        echo "<td>Dormitorios</td>";
+        echo "<td>Precio</td>";
+        echo "<td>Jardin</td>";
+        echo "<td>Piscina</td>";
+        echo "<td>Zonas Comunes</td>";
+        echo "<td>Garaje</td>";
+        echo "<td>Padel</td>";
+        echo "<td>Foto</td>";
+        echo "<td>Comprar</td>";
     echo "</tr>";
+    while($row = mysqli_fetch_assoc($result)){
+        echo "<tr>";
+            echo "<td>".$row['tipo']."</td>";
+            echo "<td>".$row['zona']."</td>";
+            echo "<td>".$row['dormitorios']."</td>";
+            echo "<td>".$row['precio']."</td>";
+            echo "<td>".$row['jardin']."</td>";
+            echo "<td>".$row['piscina']."</td>";
+            echo "<td>".$row['zonascomunes']."</td>";
+            echo "<td>".$row['garage']."</td>";
+            echo "<td>".$row['padel']."</td>";
+            echo "<td><img src=".$row['imagen']."></td>";
+            $casaID = $row['id'];
+            echo "<td><a href='./comprar.php?casaID=$casaID'>Comprar</a></td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+}else{
+    echo "No hay resultados con sus caracteristicas</br>";
+    echo "<a href='./tipo.php'>Volver</a>";
 }
-
-echo "</table>"
 
 ?>
