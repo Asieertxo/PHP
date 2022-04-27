@@ -1,0 +1,10 @@
+.tabla{
+    border: solid black 1px;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+th, td{
+    padding: 5px 30px 0 30px;
+    border: solid black 1px;
+}

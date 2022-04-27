@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<usuarios>
+    <usuario id="PHP-001">
+        <pass>1234</pass>
+        <nombreUser>Juan</nombreUser>
+        <id>PHP-001</id>
+    </usuario>
+    <usuario id="TEST-001">
+        <pass>qwer</pass>
+        <nombreUser>Julio Ruiz</nombreUser>
+        <id>TEST-001</id>
+    </usuario>
+    <usuario id="TEST-002">
+        <pass>qwerty</pass>
+        <nombreUser>Laura</nombreUser>
+        <id>TEST-002</id>
+    </usuario>
+    <usuario id="TEST-002">
+        <mail>test2@gmail.com</mail>
+        <pass>qwerty</pass>
+        <nombreUser>Maria Lopez</nombreUser>
+        <id>TEST-003</id>
+    </usuario>
+<cookie><navegador>Edge</navegador><fecha>4-3-2022</fecha></cookie><cookie><navegador>Firefox</navegador><fecha>4-3-2022</fecha></cookie><cookie><navegador>Chrome</navegador><fecha>4-3-2022</fecha></cookie></usuarios>
