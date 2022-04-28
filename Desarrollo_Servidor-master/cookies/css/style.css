@@ -1,0 +1,27 @@
+div{
+    margin: 1rem auto;
+    padding: 2rem;
+    width: fit-content;
+    min-width: 40%;
+    background-color: lightgray;
+    color: black;
+    text-align: center;
+    border-radius: 3px;
+}
+
+form{
+    text-align: right;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+h1{
+    margin: 0 auto;
+    padding: 2rem;
+    width: fit-content;
+    min-width: 40%;
+    background-color: brown;
+    color: white;
+    text-align: center;
+    border-radius: 3px;
+}

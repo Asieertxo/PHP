@@ -1,0 +1,20 @@
+h4{
+    background-color: grey;
+    text-align: center;
+}
+p{
+    text-align: center;
+    border: 1px solid black;
+    border-top: none;
+    border-bottom: none;
+}
+.imagen{
+    width: auto;
+    text-align: center;
+    /*background-color: aqua;*/
+    border: 1px solid black;
+}
+/*.imagen img{
+    border: 1px solid pink;
+    background-color: aqua;
+}*/

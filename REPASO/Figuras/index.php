@@ -1,6 +1,6 @@
 <?php
-
 echo <<<EOD
+    <h1>Que figura quieres pintar</h1>
     <form action="./medidas.php" method="POST" enctype="multipart/form-data">
         <input type="radio" name="figura" value="cuadrado">cuadrado</br>
         <input type="radio" name="figura" value="rectangulo">rectangulo</br>

@@ -1,0 +1,88 @@
+.heading-primary{
+    text-align: center;
+    background-color: rgb(157, 211, 229);
+    color: white;
+    padding: 2rem;
+    margin: 0 auto;
+    min-width: 100%;
+    width: fit-content;
+    margin-bottom: 2rem;
+    border-radius: 3px;
+}
+
+.heading-primary--form{
+    text-align: center;
+    background-color: rgb(157, 211, 229);
+    color: white;
+    padding: 2rem;
+    margin: 0 auto;
+    min-width: 30%;
+    width: fit-content;
+    margin-bottom: 2rem;
+    border-radius: 3px;
+}
+
+.div-form{
+    text-align: center;
+    background-color: mistyrose;
+    border-radius: 3px;
+    color: purple;
+    padding: 2rem;
+    margin: 0 auto;
+    min-width: 30%;
+    width: fit-content;
+    margin-bottom: 2rem;
+}
+
+.allMonths,
+.calendar{
+    margin: auto;
+    width: fit-content;
+    border-collapse: collapse;
+}
+
+.normal-cells{
+    text-align: center;
+    width: 3rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid white;
+    background-color: mistyrose;
+    color: purple;
+}
+
+a{
+    text-decoration: none;  
+}
+
+.bottom-btn{
+    margin-left:60%;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    text-decoration: none;
+}
+tr{
+    position: relative;
+}
+
+.month-cell{
+    float: left;
+    padding: 1rem;
+    position: relative;
+    top: 0;
+    left: 6.5%;
+    max-width: 20%;
+}
+
+.month-cell .heading-primary{
+    padding: 0.2rem;
+    border: none;
+}
+
+.letters-cells{
+    color: purple;
+}
+
+body{
+    background-image: url(../img/fondo.jpg);
+    background-size: cover;
+}

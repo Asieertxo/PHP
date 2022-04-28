@@ -1,0 +1,5 @@
+<?php
+
+$deck = createDeck();
+
+?>

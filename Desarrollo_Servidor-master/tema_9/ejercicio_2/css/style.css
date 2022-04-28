@@ -1,0 +1,68 @@
+.heading-primary{
+    background-color: #e63946;
+    color: #f1faee;
+    padding: 2rem;
+    margin: 0 auto;
+    margin: 1rem 0;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.div-form,
+.card-img{
+    margin: 0 auto;
+    padding: 1rem 5.5rem;
+    color: #1d3557;
+    background-color: #a8dadc;
+    min-height: 80vh;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.card-img img{
+    width: 250px;
+    height: 350px;
+    margin: 1rem; 
+    transition: all 0.3s;
+    border: 1px black solid;
+    border-radius: 1rem;
+}
+
+img:hover{
+    transform: translateY(-2px);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+body {
+    background-color: #1d3557;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.back-button,
+.form-button{
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    background-color: #e63946;
+    color: #f1faee;
+    transition: all 0.3s;
+    margin: 0 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.form-button:hover{
+    transform: translateY(-1px);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+    color: #f1faee;;
+}
+
+.error{
+    color: red;
+}

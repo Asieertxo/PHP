@@ -21,7 +21,7 @@ class Cabezera{
             padding: 10px 100px;
             box-sizing: boder-box;
           }
-            div{
+            .cabezera{
                 padding: 0;
                 display: flex;
                 justify-content: center;
@@ -33,7 +33,7 @@ class Cabezera{
                 color: black;
             }
         </style>
-        <div>
+        <div class='cabezera'>
             <h3>".self::ASIGNATURA."</h3>
             <h3>$this->tema</h3>
             <h3>$this->ejercicio</h3>

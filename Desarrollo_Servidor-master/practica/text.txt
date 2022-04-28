@@ -1,0 +1,4 @@
+Esto es un 
+texto que hay
+escrito en 
+un fichero

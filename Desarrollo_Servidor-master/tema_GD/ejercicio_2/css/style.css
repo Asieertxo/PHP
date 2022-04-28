@@ -1,0 +1,30 @@
+div{
+    background-color: burlywood;
+    margin: 0 auto;
+    padding: 1rem;
+    max-width: 40%;
+    border-radius: 5px;
+    background-image: url(../img/wood.jpg);
+    background-size: cover;
+}
+
+body{
+    background-image: url(../img/background.jpg);
+    background-size: cover;
+}
+
+form{
+    max-width: 50%;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+h1{
+    margin: 15rem auto 1rem;
+    text-align: center;
+    padding: 1rem;
+    background-color: cadetblue;
+    max-width: 40%;
+    border-radius: 5px;
+    color: whitesmoke;
+}
