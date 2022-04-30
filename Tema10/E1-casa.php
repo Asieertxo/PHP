@@ -18,7 +18,7 @@ imagefill($img, 0, 0, $blanco);
 imagefilledrectangle($img, 200, 600, 500, 300, $rojo);
 
 //tejado de la casa
-$puntos = array(500, 300, 200, 300, 350, 100);
+$puntos = array(50, 30, 20, 30, 35, 10);
 imagefilledpolygon($img, $puntos, 3, $verde);
 
 //ventanas y puerta

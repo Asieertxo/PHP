@@ -15,11 +15,11 @@ class Triangulo extends Figura{
 
     public function __toString(){
         return
-        "
-            <h4>" . parent::textoFigura() . "</h4>
+            "<h4>" . parent::textoFigura() . "</h4>
             <p>Un triangulo de $this->base x $this->altura y un area de " . self::calculoArea() . "</p>
-            <div class='imagen'><img src='img.php'></div>
-        ";
+            <div class='imagen'><img src='./img/imgt.php?base=$this->base&altura=$this->altura'></div>
+            <a href='index.php'>Atras</a>"
+        ;
     }
 }
 

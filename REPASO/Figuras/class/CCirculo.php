@@ -17,7 +17,7 @@ class Circulo extends Figura{
         "
             <h4>" . parent::textoFigura() . "</h4>
             <p>Un triangulo de $this->radio y un area de " . self::calculoArea() . "</p>
-            <div class='imagen'><img src='img.php'></div>
+            <div class='imagen'><img src='./img/img.php'></div>
         ";
     }
 }
