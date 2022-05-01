@@ -20,7 +20,7 @@ function printForm(){
             </form>
         </div>   
     </body>
-    </html>daskfjghjkfaskjdfghf
+    </html>
 END;
 }
 
