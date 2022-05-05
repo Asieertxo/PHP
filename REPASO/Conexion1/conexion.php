@@ -2,7 +2,7 @@
 
 
 
-class conexion{
+class Conexion{
     private $user = "root";
     private $pass1 = "root";
     private $pass2 = "";

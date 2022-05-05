@@ -4,8 +4,12 @@ function autoload($clase){
 }
 spl_autoload_register('autoload');
 
+require "./../Cabezera.php";
 
-$conexion = new conexion();
+$cabezera = new Cabezera("Repaso", "ejercicio 4", "conexion");
+echo $cabezera;
+
+$conexion = new Conexion();
 $conexion->conectar();
 
 
