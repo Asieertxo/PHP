@@ -4,7 +4,8 @@
 
 class conexion{
     private $user = "root";
-    private $pass = "root";
+    private $pass1 = "root";
+    private $pass2 = "";
     private $dbname = "libros";
     private $server = "localhost";
 
@@ -14,10 +15,15 @@ class conexion{
 
     function conectar(){
         try{
-            $this->pdo = new PDO("mysql:host=$this->server; dbname=$this->dbname", $this->user, $this->pass);
+            $this->pdo = new PDO("mysql:host=$this->server; dbname=$this->dbname", $this->user, $this->pass1);
             echo "Conexion correcta </br></br>";
         }catch(PDOException $error){
-            echo "No se conecto" . $error->getMessage();
+            try{
+                $this->pdo = new PDO("mysql:host=$this->server; dbname=$this->dbname", $this->user, $this->pass2);
+                echo "Conexion correcta </br></br>";
+            }catch(PDOException $error){
+                echo "No se conecto" . $error->getMessage();
+            }
         }
     }
 
