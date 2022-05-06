@@ -8,6 +8,7 @@ if($figura == "cuadrado"){
     echo <<<EOD
     <form action="./dibujar.php" method="POST" enctype="multipart/form-data">
         <input type="number" name="base" placeholder="base" required></br>
+        <input type="color" name="color"></br>
         <input type="hidden" name="tipo" value="cuadrado">
         <input type="submit" name"dibujar" value="dibujar" />
     </form>

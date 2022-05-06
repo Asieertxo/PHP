@@ -24,12 +24,15 @@ if(isset($_POST['altura'])){
 if(isset($_POST['radio'])){
     $radio = $_POST['radio']; 
 }
+if(isset($_POST['color'])){
+    $color = $_POST['color'];
+}
 
 $cabecera = new Cabezera("Repaso", "Ejercicio3", "Figuras");
 echo $cabecera;
 
 if($_POST['tipo'] == "cuadrado"){
-    $figura = new Cuadrado('blue', $base, $base);
+    $figura = new Cuadrado($color, $base, $base);
     echo $figura;
 }elseif($_POST['tipo'] == "rectangulo"){
     $figura = new Rectangulo('blue', $base, $altura);
