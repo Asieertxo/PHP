@@ -2,13 +2,17 @@
 
 function select($conexion){
     $sql = "SELECT id, isbn, title, author, stock, price FROM book";
-    $result = $conexion->accion($sql);
-
     $num = $conexion->accion($sql);
     //$num = $result;
     $num = $num->fetchAll();
     $num = count($num);
     var_dump($num);
+    $limit = 20;
+
+
+
+    $sql = "SELECT id, isbn, title, author, stock, price FROM book LIMIT $limit";
+    $result = $conexion->accion($sql);
 
     echo "<dic class='contenedor'>";
     echo "<a class='verde boton' href='./index.php?boton=insert'>ADD +</a>";
@@ -35,6 +39,10 @@ function select($conexion){
     }
     $result->closeCursor();
     echo "</table>";
+    do{
+        echo "<a>1</a>";
+        $limit = $limit + 10;
+    }while($num > $limit);
     echo "<div>";
 }
 
