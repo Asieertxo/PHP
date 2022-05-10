@@ -16,16 +16,12 @@ class Cabezera{
     public function __toString(){
         return
         "<style>
-        *{
-            margin: 0;
-            padding: 10px 100px;
-            box-sizing: boder-box;
-          }
             .cabezera{
                 padding: 0;
                 display: flex;
                 justify-content: center;
                 background-color: ".self::COLOR.";
+                margin-bottom: 30px;
             }
             h3{
                 padding: 30px;
