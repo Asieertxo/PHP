@@ -5,10 +5,7 @@ function autoload($clase){
 spl_autoload_register('autoload');
 
 require "./../Cabezera.php";
-require "./php/select.php";
-require "./php/delete.php";
-require "./php/insert.php";
-require "./php/modify.php";
+require "./php/operacionesCRUD.php";
 
 echo "<link rel='stylesheet' type='text/css' href='./css/estilos.css'>";//importar css
 
@@ -24,14 +21,14 @@ $conexion = new Conexion('config.json');
 
 if(isset($_GET['boton'])){
     if($_GET['boton'] == "insert"){
-        insert($conexion);
+        insertBook($conexion);
     }elseif($_GET['boton'] == "delete"){
-        delete($conexion);
+        deleteBook($conexion);
     }elseif($_GET['boton'] == "modify"){
-        modify($conexion);
+        modifyBook($conexion);
     }
 }else{
-    select($conexion);
+    selectBook($conexion);
 }
 
 
