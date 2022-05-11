@@ -7,25 +7,30 @@ function autocarga($clase){
 spl_autoload_register('autocarga');
 
 
+$book = new Book(null, null, null, null, null);
 
 
 if(isset($_GET['boton'])){
     if($_GET['boton'] == "insert"){
-        dataBook();
+        insertDataBook();
     }elseif($_GET['boton'] == "delete"){
-        deleteBook($conexion);
-    }elseif($_GET['boton'] == "modify"){
-        modifyBook($conexion);
+        $id = $_GET['id'];
+        $book->deleteBook($id);
+        header("Refresh:3; url=index.php");
+    }elseif($_GET['boton'] == "update"){
+        updateDataBook();
     }
 }else{
-    $book = new Book(null, null, null, null, null);
     $book->showBook();
 }
 
 
 
 
-function dataBook(){
+
+
+
+function insertDataBook(){
     if(!isset($_POST['isbn']) || !isset($_POST['title']) || !isset($_POST['author']) || !isset($_POST['stock']) || !isset($_POST['price'])){
         echo<<<EOD
             <div class='contenedor'>
@@ -44,6 +49,36 @@ function dataBook(){
     }else{
         $book = new Book($_POST['isbn'], $_POST['title'], $_POST['author'], $_POST['stock'], $_POST['price']);
         $book->insertBook();
+        header("Refresh:3; url=index.php");
+    }
+}
+
+function updateDataBook(){
+    $book = new Book(null, null, null, null, null);
+    if(!isset($_GET['update'])){
+        $id = $_GET['id'];
+        $result = $book->selectByID($id);
+        $result = $result->fetch(PDO::FETCH_ASSOC);
+
+        echo<<<EOD
+            <div class='contenedor'>
+                <h2>Elije Opciones</h2></br>
+                <form action="./index.php?boton=update&update=$result[id]" method="POST" enctype="multipart/form-data">
+                    <p>Pon los datos del libro para modificar</p>
+                    <input type="hidden" name="id" value="$result[id]"/>
+                    <input type="number" name="isbn" value="$result[isbn]"/>
+                    <input type="text" name="title" value="$result[title]"/>
+                    <input type="text" name="author" value="$result[author]"/>
+                    <input type="number" name="stock" value="$result[stock]"/>
+                    <input type="number" name="price" value="$result[price]"/>
+                    <input type="submit" name="update" value="UPDATE"/>
+                </form>
+            </div>
+        EOD;
+    }else{
+        $id = $_GET['update'];
+        $book = new Book($_POST['isbn'], $_POST['title'], $_POST['author'], $_POST['stock'], $_POST['price']);
+        $book->updateBook($id);
         header("Refresh:3; url=index.php");
     }
 }
