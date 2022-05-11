@@ -4,6 +4,10 @@ function autoload($clase){
 }
 spl_autoload_register('autoload');
 
+/*spl_autoload_register(function($class)){
+    require __DIR__ . "./src/";
+}*/
+
 require "./../Cabezera.php";
 require "./php/operacionesCRUD.php";
 
