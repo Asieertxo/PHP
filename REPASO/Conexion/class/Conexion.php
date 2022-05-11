@@ -8,7 +8,7 @@ class Conexion{
     private $dbname;
     private $server;
 
-    private $pdo;
+    private $conn;
     private $sql;
     private $resultado;
 
@@ -21,23 +21,15 @@ class Conexion{
         $this->server = $json['server'];
 
         try{
-            $this->pdo = new PDO("mysql:host=$this->server; dbname=$this->dbname", $this->user, $this->pass);
+            $this->conn = new PDO("mysql:host=$this->server; dbname=$this->dbname", $this->user, $this->pass);
         }catch(PDOException $error){
             echo "No se conecto" . $error->getMessage();
         }
     }
 
-    /*function accion($sql){
-        try{
-            $this->sql = $sql;
-            $this->resultado = $this->pdo->prepare($this->sql);
-            $this->resultado->execute();
-
-            return $this->resultado;
-        }catch(PDOException $error){
-            die("Error en la accion ---- " . $error->getMessage());
-        }
-    }*/
+    public function getConn(){
+        return $this->conn;
+    }
 }
 
 
