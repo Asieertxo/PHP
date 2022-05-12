@@ -20,8 +20,8 @@ class Book extends Conexion{
             $conn = new Conexion('./config.json');
             $conn = $conn->getConn();
             return $conn;
-        }catch(PDOException $error){
-            echo "No se pudo conectar" . $error->getMessage();
+        }catch(PDOException $e){
+            echo "No se pudo conectar" . $e->getMessage();
         }
     }
 
@@ -32,8 +32,16 @@ class Book extends Conexion{
                 //$stmt->bindParam(':tabla', $tabla);
             $stmt->execute();
             return $stmt;
-        }catch(PDOException $error){
-            echo "No se han podido acceder a los datos" . $error->getMessage();
+        }catch(PDOException $e){
+            if($e->getCode() == '42S02'){
+                echo "NO SE HAN ENCONTRADO DATOS, introduciendo...<br><br>" . $e->getMessage();
+                sleep(3);
+                self::insertData();
+                die();
+            }else{
+                echo $e->getCode();
+            }
+            
         }
     }
 
@@ -125,6 +133,31 @@ class Book extends Conexion{
         }catch(PDOException $error){
             echo "No se subio" . $error->getMessage();
         }
+    }
+
+    public function insertData(){
+        $query = '';
+        $sqlScript = file('./Libros.sql');
+        foreach ($sqlScript as $line)   {
+        
+            $startWith = substr(trim($line), 0 ,2);
+            $endWith = substr(trim($line), -1 ,1);
+        
+            if (empty($line) || $startWith == '--' || $startWith == '/*' || $startWith == '*/' || $startWith == '//') {
+                continue;
+            }
+                
+            $query = $query . $line;
+            //var_dump($query);
+            if ($endWith == ';') {
+                $conn = self::connect();
+                $stmt = $conn->prepare($query);
+                $stmt->execute();
+                $query= '';            
+            }
+        }
+        echo '<div class="success-response sql-import-response">SQL file imported successfully</div>';
+        header("Refresh:3; url=index.php");
     }
 
 }
