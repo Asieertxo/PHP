@@ -6,9 +6,15 @@ function autocarga($clase){
 }
 spl_autoload_register('autocarga');
 
+require "./php/log.php";
+
 
 $book = new Book(null, null, null, null, null);
 
+if(1 == 1){
+    insertXML();
+    die();
+}
 
 if(isset($_GET['boton'])){
     if($_GET['boton'] == "insert"){
