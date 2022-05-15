@@ -80,7 +80,7 @@ class Book extends Conexion{
                     echo "<td>$registro[author]</td>";
                     echo "<td>$registro[stock]</td>";
                     echo "<td>$registro[price]€</td>";
-                    echo "<td><a class='verde' href='./index.php?boton=update&id=$registro[id]'>Modify</a><a class='rojo' href='./index.php?boton=delete&id=$registro[id]'>Delete</a></td>";
+                    echo "<td><a class='verde' href='./index.php?boton=update&id=$registro[id]'>Modify</a><a class='rojo' href='./index.php?boton=delete&id=$registro[id]&isbn=$registro[isbn]'>Delete</a></td>";
                 echo "</tr>";
             }
             $result->closeCursor();
@@ -99,18 +99,26 @@ class Book extends Conexion{
                 $stmt->bindParam(':price', $this->price);
             $stmt->execute();
 
+            $id = $conn->prepare("SELECT MAX(id) FROM book");
+            $id->execute();
+            $id = $id->fetchAll();
+            $id =$id[0][0];
+
+            insertXML($id, $this->isbn, 'insertLog');
             echo "Libro subido con exito";
         }catch(PDOException $error){
             echo "No se subio" . $error->getMessage();
         }
     }
 
-    public function deleteBook($id){
+    public function deleteBook($id, $isbn){
         try{
             $conn = self::connect();
             $stmt = $conn->prepare("DELETE FROM book WHERE id = :id");
                 $stmt->bindParam(':id', $id);
             $stmt->execute();
+
+            logXML($id, $isbn, 'deleteLog');
             echo "Libro borrado con exito";
         }catch(PDOException $error){
             echo "No se pudo borrar" . $error->getMessage();
@@ -129,6 +137,7 @@ class Book extends Conexion{
                 $stmt->bindParam(':price', $this->price);
             $stmt->execute();
 
+            logXML($id, $this->isbn, 'updateLog');
             echo "Libro modificado con exito";
         }catch(PDOException $error){
             echo "No se subio" . $error->getMessage();

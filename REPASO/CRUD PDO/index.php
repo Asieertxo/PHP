@@ -11,24 +11,20 @@ require "./php/log.php";
 
 $book = new Book(null, null, null, null, null);
 
-if(1 == 1){
-    insertXML();
-    die();
-}
-
 if(isset($_GET['boton'])){
     if($_GET['boton'] == "insert"){
         insertDataBook();
     }elseif($_GET['boton'] == "delete"){
         $id = $_GET['id'];
-        $book->deleteBook($id);
+        $isbn = $_GET['isbn'];
+        $book->deleteBook($id, $isbn);
         header("Refresh:3; url=index.php");
     }elseif($_GET['boton'] == "update"){
         updateDataBook();
     }
 }else{
     $book->showBook();
-}
+}   
 
 
 
