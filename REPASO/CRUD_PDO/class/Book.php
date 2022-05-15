@@ -25,40 +25,47 @@ class Book extends Conexion{
         }
     }
 
-    public function selectBook($tabla){
+    public function selectBook(){
         try{
+            echo "2";
             $conn = self::connect();
+            echo "3";
             $stmt = $conn->prepare("SELECT * FROM book");//saber si se puede meter book como parametro
                 //$stmt->bindParam(':tabla', $tabla);
+                echo "4";
             $stmt->execute();
+            var_dump($stmt);
+            echo "5";
             return $stmt;
         }catch(PDOException $e){
-            if($e->getCode() == '42S02'){
+            /*if($e->getCode() == '42S02'){
                 echo "NO SE HAN ENCONTRADO DATOS, introduciendo...<br><br>" . $e->getMessage();
                 sleep(3);
                 self::insertData();
                 die();
-            }else{
+            }else{*/
                 echo $e->getCode();
-            }
+            //}
             
         }
     }
 
     public function selectByID($id){
-        try{
+        try{    
             $conn = self::connect();
             $stmt = $conn->prepare("SELECT * FROM book WHERE id = :id");//saber si se puede meter book como parametro
                 $stmt->bindParam(':id', $id);
             $stmt->execute();
             return $stmt;
-        }catch(PDOException $error){
-            echo "No se han podido acceder a los datos" . $error->getMessage();
+        }catch(PDOException $e){
+            echo "No se han podido acceder a los datos" . $e->getMessage();
         }
     }
 
     public function showBook(){
-        $result = self::selectBook(10);
+        echo "1";
+        $result = self::selectBook();
+        echo "6";
 
         echo "<dic class='contenedor'>";
             echo "<a class='verde boton' href='./index.php?boton=insert'>ADD +</a>";

@@ -22,6 +22,7 @@ class Conexion{
 
         try{
             $this->conn = new PDO("mysql:host=$this->server; dbname=$this->dbname", $this->user, $this->pass);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }catch(PDOException $e){
             if($e->getCode() == '1045'){
                 echo "SU USUARIO O CONTRASEÑA INCORRECTO<br><br>" . $e->getMessage();
