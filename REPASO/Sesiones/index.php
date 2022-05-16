@@ -15,11 +15,12 @@ if(isset($_POST['user']) && isset($_POST['pass'])){
 
 
     echo "odifugiuhg</br>";
-    if($_SESSION['name'] = 'asier'){
+    if($_SESSION['name'] == 'asier'){
         echo "hola";
     }else{
         echo "adios";
     }
+    echo "</br><a href='./index.php'>atras</a>";
     session_destroy();
 
 }else{

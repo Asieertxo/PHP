@@ -61,7 +61,9 @@ class Book extends Conexion{
         $result = self::selectBook();
 
         echo "<dic class='contenedor'>";
-            echo "<a class='verde boton' href='./index.php?boton=insert'>ADD +</a>";
+            if($_SESSION['name'] == 'asier'){
+                echo "<a class='verde boton' href='./index.php?boton=insert'>ADD +</a>";
+            }
             echo "<table class='tabla'>";
                 echo "<tr>";
                     echo "<td><b>ID:</b></td>   ";
@@ -70,7 +72,9 @@ class Book extends Conexion{
                     echo "<td><b>Author:</b></td>";
                     echo "<td><b>Stock:</b></td>";
                     echo "<td><b>Price:</b></td>";
-                    echo "<td><b>Modificar:</b></td>";
+                    if($_SESSION['name'] == 'asier'){
+                        echo "<td><b>Modificar:</b></td>";
+                    }
                 echo "</tr>";
             while($registro = $result->fetch(PDO::FETCH_ASSOC)){
                 echo "<tr>";
@@ -80,8 +84,10 @@ class Book extends Conexion{
                     echo "<td>$registro[author]</td>";
                     echo "<td>$registro[stock]</td>";
                     echo "<td>$registro[price]€</td>";
-                    echo "<td><a class='verde' href='./index.php?boton=update&id=$registro[id]'>Modify</a><a class='rojo' href='./index.php?boton=delete&id=$registro[id]&isbn=$registro[isbn]'>Delete</a></td>";
-                echo "</tr>";
+                    if($_SESSION['name'] == 'asier'){
+                        echo "<td><a class='verde' href='./index.php?boton=update&id=$registro[id]'>Modify</a><a class='rojo' href='./index.php?boton=delete&id=$registro[id]&isbn=$registro[isbn]'>Delete</a></td>";
+                    }
+                    echo "</tr>";
             }
             $result->closeCursor();
             echo "</table>";
