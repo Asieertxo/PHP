@@ -7,28 +7,20 @@ class Book extends Conexion{
     public $stock;
     public $price;
     
-    public function __construct($isbn, $title, $author, $stock, $price){
+    public function __construct($isbn = null, $title = null, $author = null, $stock = null, $price = null){
         $this->isbn = $isbn;
         $this->title = $title;
         $this->author = $author;
         $this->stock = $stock;
         $this->price = $price;
+
+        parent::__construct();
     }
 
-    public function connect(){
-        try{
-            $conn = new Conexion('./config.json');
-            $conn = $conn->getConn();
-            return $conn;
-        }catch(PDOException $e){
-            echo "No se pudo conectar" . $e->getMessage();
-        }
-    }
 
     public function selectBook(){
         try{
-            $conn = self::connect();
-            $stmt = $conn->prepare("SELECT * FROM book");//saber si se puede meter book como parametro
+            $stmt = $this->conn->prepare("SELECT * FROM book");//saber si se puede meter book como parametro
                 //$stmt->bindParam(':tabla', $tabla);
             $stmt->execute();
             return $stmt;
@@ -47,8 +39,7 @@ class Book extends Conexion{
 
     public function selectByID($id){
         try{    
-            $conn = self::connect();
-            $stmt = $conn->prepare("SELECT * FROM book WHERE id = :id");//saber si se puede meter book como parametro
+            $stmt = $this->conn->prepare("SELECT * FROM book WHERE id = :id");//saber si se puede meter book como parametro
                 $stmt->bindParam(':id', $id);
             $stmt->execute();
             return $stmt;
@@ -61,9 +52,9 @@ class Book extends Conexion{
         $result = self::selectBook();
 
         echo "<dic class='contenedor'>";
-            if($_SESSION['name'] == 'asier'){
+            //if($_SESSION['name'] == 'asier'){
                 echo "<a class='verde boton' href='./index.php?boton=insert'>ADD +</a>";
-            }
+            //}
             echo "<table class='tabla'>";
                 echo "<tr>";
                     echo "<td><b>ID:</b></td>   ";
@@ -72,9 +63,9 @@ class Book extends Conexion{
                     echo "<td><b>Author:</b></td>";
                     echo "<td><b>Stock:</b></td>";
                     echo "<td><b>Price:</b></td>";
-                    if($_SESSION['name'] == 'asier'){
+                    //if($_SESSION['name'] == 'asier'){
                         echo "<td><b>Modificar:</b></td>";
-                    }
+                    //}
                 echo "</tr>";
             while($registro = $result->fetch(PDO::FETCH_ASSOC)){
                 echo "<tr>";
@@ -84,9 +75,9 @@ class Book extends Conexion{
                     echo "<td>$registro[author]</td>";
                     echo "<td>$registro[stock]</td>";
                     echo "<td>$registro[price]€</td>";
-                    if($_SESSION['name'] == 'asier'){
+                    //if($_SESSION['name'] == 'asier'){
                         echo "<td><a class='verde' href='./index.php?boton=update&id=$registro[id]'>Modify</a><a class='rojo' href='./index.php?boton=delete&id=$registro[id]&isbn=$registro[isbn]'>Delete</a></td>";
-                    }
+                    //}
                     echo "</tr>";
             }
             $result->closeCursor();
@@ -96,8 +87,7 @@ class Book extends Conexion{
 
     public function insertBook(){
         try{
-            $conn = self::connect();
-            $stmt = $conn->prepare("INSERT INTO book (isbn, title, author, stock, price) VALUES (:isbn, :title, :author, :stock, :price)");
+            $stmt = $this->conn->prepare("INSERT INTO book (isbn, title, author, stock, price) VALUES (:isbn, :title, :author, :stock, :price)");
                 $stmt->bindParam(':isbn', $this->isbn);
                 $stmt->bindParam(':title', $this->title);
                 $stmt->bindParam(':author', $this->author);
@@ -105,12 +95,12 @@ class Book extends Conexion{
                 $stmt->bindParam(':price', $this->price);
             $stmt->execute();
 
-            $id = $conn->prepare("SELECT MAX(id) FROM book");
+            $id = $this->conn->prepare("SELECT MAX(id) FROM book");
             $id->execute();
             $id = $id->fetchAll();
             $id =$id[0][0];
 
-            insertXML($id, $this->isbn, 'insertLog');
+            logXML($id, $this->isbn, 'insertLog');
             echo "Libro subido con exito";
         }catch(PDOException $error){
             echo "No se subio" . $error->getMessage();
@@ -119,8 +109,7 @@ class Book extends Conexion{
 
     public function deleteBook($id, $isbn){
         try{
-            $conn = self::connect();
-            $stmt = $conn->prepare("DELETE FROM book WHERE id = :id");
+            $stmt = $this->conn->prepare("DELETE FROM book WHERE id = :id");
                 $stmt->bindParam(':id', $id);
             $stmt->execute();
 
@@ -133,8 +122,7 @@ class Book extends Conexion{
 
     public function updateBook($id){
         try{
-            $conn = self::connect();
-            $stmt = $conn->prepare("UPDATE book SET isbn = :isbn, title = :title, author = :author, stock = :stock, price = :price WHERE id = :id");
+            $stmt = $this->conn->prepare("UPDATE book SET isbn = :isbn, title = :title, author = :author, stock = :stock, price = :price WHERE id = :id");
                 $stmt->bindParam(':id', $id);
                 $stmt->bindParam(':isbn', $this->isbn);
                 $stmt->bindParam(':title', $this->title);
@@ -165,8 +153,7 @@ class Book extends Conexion{
             $query = $query . $line;
             //var_dump($query);
             if ($endWith == ';') {
-                $conn = self::connect();
-                $stmt = $conn->prepare($query);
+                $stmt = $this->conn->prepare($query);
                 $stmt->execute();
                 $query= '';            
             }

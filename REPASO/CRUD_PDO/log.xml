@@ -10,7 +10,11 @@
     </updateLogs>
 
     <deleteLogs>
-
+        <deleteLog ID="29">
+            <date>2022-05-17-08-08-06</date>
+            <isbn>632142356847</isbn>
+            <user>asier</user>
+        </deleteLog>
     </deleteLogs>
 
 </logs>

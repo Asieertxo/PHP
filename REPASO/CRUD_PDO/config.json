@@ -1,6 +1,6 @@
 {
     "user": "root",
-    "pass": "root",
+    "pass": "",
     "dbname": "libros",
     "server": "localhost"
 }

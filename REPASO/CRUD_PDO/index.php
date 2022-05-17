@@ -9,12 +9,12 @@ spl_autoload_register('autocarga');
 require "./php/log.php";
 
 
-$book = new Book(null, null, null, null, null);
+$book = new Book();
 $pcuser = 'asier';
 $pcpass = '1234';
 
 
-if(isset($_POST['user']) && isset($_POST['pass'])){
+/*if(isset($_POST['user']) && isset($_POST['pass'])){
     session_start();
     if($_POST['user'] == $pcuser && $_POST['pass'] == $pcpass){
         $_SESSION['name'] = "asier";
@@ -24,20 +24,20 @@ if(isset($_POST['user']) && isset($_POST['pass'])){
 }else{
     loginForm();
     die();
-}
+}*/
 
 
 
 if(isset($_GET['boton'])){
     if($_GET['boton'] == "insert"){
-        insertDataBook();
+        formInsertBook();
     }elseif($_GET['boton'] == "delete"){
         $id = $_GET['id'];
         $isbn = $_GET['isbn'];
         $book->deleteBook($id, $isbn);
         header("Refresh:3; url=index.php");
     }elseif($_GET['boton'] == "update"){
-        updateDataBook();
+        formUpdateBook();
     }
 }else{
     $book->showBook();
@@ -46,10 +46,10 @@ if(isset($_GET['boton'])){
 
 
 
-function loginForm(){
+/*function loginForm(){
     echo<<<EOD
     <div class='contenedor'>
-        <h2>Inicia Sesion</h2></br>
+        <h2>Inicia Sesion(asier - 1234)</h2></br>
         <form action="./index.php" method="POST" enctype="multipart/form-data">
             <input type="text" name="user" placeholder="usuario"/>
             <input type="pass" name="pass" placeholder="contraseña"/>
@@ -57,10 +57,10 @@ function loginForm(){
         </form>
     </div>
     EOD;
-}
+}*/
 
 
-function insertDataBook(){
+function formInsertBook(){
     if(!isset($_POST['isbn']) || !isset($_POST['title']) || !isset($_POST['author']) || !isset($_POST['stock']) || !isset($_POST['price'])){
         echo<<<EOD
             <div class='contenedor'>
@@ -83,7 +83,7 @@ function insertDataBook(){
     }
 }
 
-function updateDataBook(){
+function formUpdateBook(){
     $book = new Book(null, null, null, null, null);
     if(!isset($_GET['update'])){
         $id = $_GET['id'];

@@ -8,12 +8,12 @@ class Conexion{
     private $dbname;
     private $server;
 
-    private $conn;
+    protected $conn;
     private $sql;
     private $resultado;
 
-    public function __construct($ruta){
-        $json = file_get_contents($ruta);
+    public function __construct(){
+        $json = file_get_contents("./config.json");
         $json = json_decode($json, true);
         $this->user = $json['user'];
         $this->pass = $json['pass'];
@@ -42,10 +42,11 @@ class Conexion{
         }
     }
 
-    public function getConn(){
+    /*public function getConn(){
         return $this->conn;
-    }
+    }*/
 
+    
     public function createBBDD(){
         $conn = new PDO("mysql:host=$this->server", $this->user, $this->pass);
         $stmt = $conn->prepare("CREATE DATABASE libros");//como pasar libros por parametro
