@@ -9,8 +9,6 @@ class Conexion{
     private $server;
 
     protected $conn;
-    private $sql;
-    private $resultado;
 
     public function __construct(){
         $json = file_get_contents("./config.json");
@@ -41,10 +39,6 @@ class Conexion{
             }
         }
     }
-
-    /*public function getConn(){
-        return $this->conn;
-    }*/
 
     
     public function createBBDD(){
