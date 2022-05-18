@@ -52,9 +52,7 @@ class Book extends Conexion{
         $result = self::selectBook();
 
         echo "<dic class='contenedor'>";
-            //if($_SESSION['name'] == 'asier'){
-                echo "<a class='verde boton' href='./index.php?boton=insert'>ADD +</a>";
-            //}
+            echo "<a class='verde boton' href='./index.php?boton=insert'>ADD +</a>";
             echo "<table class='tabla'>";
                 echo "<tr>";
                     echo "<td><b>ID:</b></td>   ";
@@ -63,9 +61,7 @@ class Book extends Conexion{
                     echo "<td><b>Author:</b></td>";
                     echo "<td><b>Stock:</b></td>";
                     echo "<td><b>Price:</b></td>";
-                    //if($_SESSION['name'] == 'asier'){
-                        echo "<td><b>Modificar:</b></td>";
-                    //}
+                    echo "<td><b>Modificar:</b></td>";
                 echo "</tr>";
             while($registro = $result->fetch(PDO::FETCH_ASSOC)){
                 echo "<tr>";
@@ -75,9 +71,7 @@ class Book extends Conexion{
                     echo "<td>$registro[author]</td>";
                     echo "<td>$registro[stock]</td>";
                     echo "<td>$registro[price]€</td>";
-                    //if($_SESSION['name'] == 'asier'){
-                        echo "<td><a class='verde' href='./index.php?boton=update&id=$registro[id]'>Modify</a><a class='rojo' href='./index.php?boton=delete&id=$registro[id]&isbn=$registro[isbn]'>Delete</a></td>";
-                    //}
+                    echo "<td><a class='verde' href='./index.php?boton=update&id=$registro[id]'>Modify</a><a class='rojo' href='./index.php?boton=delete&id=$registro[id]&isbn=$registro[isbn]&title=$registro[title]&author=$registro[author]'>Delete</a></td>";
                     echo "</tr>";
             }
             $result->closeCursor();
@@ -100,20 +94,20 @@ class Book extends Conexion{
             $id = $id->fetchAll();
             $id =$id[0][0];
 
-            logXML($id, $this->isbn, 'insertLog');
+            logXML($id, $this->isbn, $this->title, $this->author, 'insertLog');
             echo "Libro subido con exito";
         }catch(PDOException $error){
             echo "No se subio" . $error->getMessage();
         }
     }
 
-    public function deleteBook($id, $isbn){
+    public function deleteBook($id, $isbn, $title, $author){
         try{
             $stmt = $this->conn->prepare("DELETE FROM book WHERE id = :id");
                 $stmt->bindParam(':id', $id);
             $stmt->execute();
 
-            logXML($id, $isbn, 'deleteLog');
+            logXML($id, $isbn, $title, $author, 'deleteLog');
             echo "Libro borrado con exito";
         }catch(PDOException $error){
             echo "No se pudo borrar" . $error->getMessage();
@@ -131,7 +125,7 @@ class Book extends Conexion{
                 $stmt->bindParam(':price', $this->price);
             $stmt->execute();
 
-            logXML($id, $this->isbn, 'updateLog');
+            logXML($id, $this->isbn, $this->title, $this->author, 'updateLog');
             echo "Libro modificado con exito";
         }catch(PDOException $error){
             echo "No se subio" . $error->getMessage();
@@ -151,13 +145,18 @@ class Book extends Conexion{
             }
                 
             $query = $query . $line;
-            //var_dump($query);
             if ($endWith == ';') {
                 $stmt = $this->conn->prepare($query);
                 $stmt->execute();
                 $query= '';            
             }
         }
+
+        $result = self::selectBook();
+        while($registro = $result->fetch(PDO::FETCH_ASSOC)){
+            insertinXML($registro['id'], $registro['isbn'], $registro['title'], $registro['author']);
+        }
+
         echo '<div class="success-response sql-import-response">SQL file imported successfully</div>';
         header("Refresh:3; url=index.php");
     }
