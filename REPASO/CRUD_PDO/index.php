@@ -21,7 +21,7 @@ if(isset($_GET['boton'])){
         $title = $_GET['title'];
         $author = $_GET['author'];
         $book->deleteBook($id, $isbn, $title, $author);
-        header("Refresh:20; url=index.php");
+        header("Refresh:3; url=index.php");
     }elseif($_GET['boton'] == "update"){
         formUpdateBook();
     }

@@ -55,8 +55,8 @@ function deleteinXML($id){
         foreach($books as $book){
             foreach($book->attributes() as $a => $b){
                 if($b == $id){
-                    unset($book);
-                    break;
+                    unset($book[0]);
+                    continue(3);
                 }
             }
         }
