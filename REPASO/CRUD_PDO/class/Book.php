@@ -94,7 +94,7 @@ class Book extends Conexion{
             $id = $id->fetchAll();
             $id =$id[0][0];
 
-            logXML($id, $this->isbn, $this->title, $this->author, 'insertLog');
+            logXML($id, $this->isbn, $this->title, $this->author, 'insert');
             echo "Libro subido con exito";
         }catch(PDOException $error){
             echo "No se subio" . $error->getMessage();
@@ -107,7 +107,7 @@ class Book extends Conexion{
                 $stmt->bindParam(':id', $id);
             $stmt->execute();
 
-            logXML($id, $isbn, $title, $author, 'deleteLog');
+            logXML($id, $isbn, $title, $author, 'delete');
             echo "Libro borrado con exito";
         }catch(PDOException $error){
             echo "No se pudo borrar" . $error->getMessage();
@@ -125,7 +125,7 @@ class Book extends Conexion{
                 $stmt->bindParam(':price', $this->price);
             $stmt->execute();
 
-            logXML($id, $this->isbn, $this->title, $this->author, 'updateLog');
+            logXML($id, $this->isbn, $this->title, $this->author, 'update');
             echo "Libro modificado con exito";
         }catch(PDOException $error){
             echo "No se subio" . $error->getMessage();
