@@ -1,33 +1,33 @@
 <?php
+session_start();
 
 $pcuser = 'asier';
 $pcpass = '1234';
 
-
-if(isset($_POST['user']) && isset($_POST['pass'])){
-    session_start();
-    if($_POST['user'] == $pcuser && $_POST['pass'] == $pcpass){
-        $_SESSION['name'] = "asier";
+if(!isset($_SESSION['name'])){
+    if(isset($_POST['user']) && isset($_POST['pass'])){
+        if($_POST['user'] == $pcuser && $_POST['pass'] == $pcpass){
+            $_SESSION['name'] = "asier";
+        }else{
+            $_SESSION['name'] = "invitado";
+        }   
     }else{
-        $_SESSION['name'] = "invitado";
-    }   
-
-
-
-    echo "odifugiuhg</br>";
-    if($_SESSION['name'] == 'asier'){
-        echo "hola";
-    }else{
-        echo "adios";
-    }
-    echo "</br><a href='./index.php'>atras</a>";
-    session_destroy();
-
-}else{
-    formulario();
+        formulario();
+    } 
 }
 
 
+
+
+echo "odifugiuhg</br>";
+if($_SESSION['name'] == 'asier'){
+    echo "hola";
+    echo "<a href='index.php'>recarga</a>";
+}else{
+    echo "adios";
+}
+echo "</br><a href='./index.php'>atras</a>";
+session_destroy();
 
 
 
