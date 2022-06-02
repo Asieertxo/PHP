@@ -18,10 +18,10 @@ class Book extends Conexion{
     }
 
 
-    public function selectBook(){
+    public function selectBook($order){
         try{
-            $stmt = $this->conn->prepare("SELECT * FROM book");//saber si se puede meter book como parametro
-                //$stmt->bindParam(':tabla', $tabla);
+            $stmt = $this->conn->prepare("SELECT * FROM book ORDER BY $order");//order no deja meterlo como parametro
+                //$stmt->bindParam(':order', $order, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt;
         }catch(PDOException $e){
@@ -48,19 +48,19 @@ class Book extends Conexion{
         }
     }
 
-    public function showBook(){
-        $result = self::selectBook();
+    public function showBook($order){
+        $result = self::selectBook($order);
 
         echo "<dic class='contenedor'>";
             echo "<a class='verde boton' href='./index.php?boton=insert'>ADD +</a>";
             echo "<table class='tabla'>";
                 echo "<tr>";
-                    echo "<td><b>ID:</b></td>   ";
-                    echo "<td><b>ISBN:</b></td>";
-                    echo "<td><b>Title:</b></td>";
-                    echo "<td><b>Author:</b></td>";
-                    echo "<td><b>Stock:</b></td>";
-                    echo "<td><b>Price:</b></td>";
+                    echo "<td><b><a href='./index.php?order=id'>ID:</a></b></td>";
+                    echo "<td><b><a href='./index.php?order=isbn'>ISBN:</a></b></td>";
+                    echo "<td><b><a href='./index.php?order=title'>Title:</a></b></td>";
+                    echo "<td><b><a href='./index.php?order=author'>Author:</a></b></td>";
+                    echo "<td><b><a href='./index.php?order=stock'>Stock:</a></b></td>";
+                    echo "<td><b><a href='./index.php?order=price'>Price:</a></b></td>";
                     echo "<td><b>Modificar:</b></td>";
                 echo "</tr>";
             while($registro = $result->fetch(PDO::FETCH_ASSOC)){
@@ -94,7 +94,7 @@ class Book extends Conexion{
             $id = $id->fetchAll();
             $id =$id[0][0];
 
-            logXML($id, $this->isbn, $this->title, $this->author, 'insert');
+            logXML($id, $this->isbn, $this->title, $this->author, 'insertLog');
             echo "Libro subido con exito";
         }catch(PDOException $error){
             echo "No se subio" . $error->getMessage();
@@ -107,7 +107,7 @@ class Book extends Conexion{
                 $stmt->bindParam(':id', $id);
             $stmt->execute();
 
-            logXML($id, $isbn, $title, $author, 'delete');
+            logXML($id, $isbn, $title, $author, 'deleteLog');
             echo "Libro borrado con exito";
         }catch(PDOException $error){
             echo "No se pudo borrar" . $error->getMessage();
@@ -125,7 +125,7 @@ class Book extends Conexion{
                 $stmt->bindParam(':price', $this->price);
             $stmt->execute();
 
-            logXML($id, $this->isbn, $this->title, $this->author, 'update');
+            logXML($id, $this->isbn, $this->title, $this->author, 'updateLog');
             echo "Libro modificado con exito";
         }catch(PDOException $error){
             echo "No se subio" . $error->getMessage();

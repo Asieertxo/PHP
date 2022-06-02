@@ -21,12 +21,17 @@ if(isset($_GET['boton'])){
         $title = $_GET['title'];
         $author = $_GET['author'];
         $book->deleteBook($id, $isbn, $title, $author);
-        header("Refresh:3; url=index.php");
+        header("Refresh:20; url=index.php");
     }elseif($_GET['boton'] == "update"){
         formUpdateBook();
     }
 }else{
-    $book->showBook();
+    if(!isset($_GET['order'])){
+        $order = 'id';
+    }else{
+        $order = $_GET['order'];
+    }
+    $book->showBook($order);
 }   
 
 
