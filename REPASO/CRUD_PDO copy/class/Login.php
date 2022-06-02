@@ -18,7 +18,7 @@ class Login extends Conexion{
             if(self::userExists()){
                 $_SESSION['name'] = $this->user;
             }else{
-                $_SESSION['name'] = "invitado";
+                self::errorUser();
             }
         }else{
             self::loginform();
@@ -58,6 +58,13 @@ class Login extends Conexion{
                 </form>
             </div>
         EOD;
+    }
+
+    public function errorUser(){
+        echo "El usuario o contraseña es incorrecto<br>";
+        echo "Continuara como invitado, si quiere cambiar cierre sesion";
+        $_SESSION['name'] = "invitado";
+        header("Refresh:3; url=index.php");
     }
 }
 
