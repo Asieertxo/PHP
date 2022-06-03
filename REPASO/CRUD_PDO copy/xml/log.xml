@@ -14,7 +14,7 @@
         </updateLogs>
 
         <deleteLogs>
-        </deleteLogs>
+        <deleteLog><date>2022-06-03-11-11-25</date><user>asier</user><data ID="33"><isbn>9784635813284</isbn><title>LibroP</title><author>Prueba</author></data></deleteLog></deleteLogs>
 
     </logs>
 </bbdd>

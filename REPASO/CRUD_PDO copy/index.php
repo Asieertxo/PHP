@@ -7,25 +7,30 @@ function autocarga($clase){
 spl_autoload_register('autocarga');
 
 require "./php/log.php";
-require "./php/utils.php";
+require "./php/formularios.php";
 
 
 
  
 session_start();
-//Parte de Logueo
+//Parte de Logueo-------------------------------------------------
 $login = new Login();
+if(isset($_POST['register'])){
+    registerform();
+    die();
+}
 if(!isset($_SESSION['name'])){
     $login->check();
 }
-$login->logout();
+if(isset($_GET['sdestroy'])){
+    $login->logout();
+}
 
 
 
 
-//Parte de visualizacion y CRUD de Libros
+//Parte de visualizacion y CRUD de Libros-------------------------
 $book = new Book();
-
 
 if(isset($_GET['boton'])){
     if($_GET['boton'] == "insert"){
@@ -36,7 +41,7 @@ if(isset($_GET['boton'])){
         $title = $_GET['title'];
         $author = $_GET['author'];
         $book->deleteBook($id, $isbn, $title, $author);
-        header("Refresh:20; url=index.php");
+        header("Refresh:3; url=index.php");
     }elseif($_GET['boton'] == "update"){
         formUpdateBook();
     }

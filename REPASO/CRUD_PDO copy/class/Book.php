@@ -97,7 +97,7 @@ class Book extends Conexion{
                 $stmt->bindParam(':price', $this->price);
             $stmt->execute();
 
-            $id = $this->conn->prepare("SELECT MAX(id) FROM book");
+            $id = $this->conn->prepare("SELECT MAX(id) FROM book");//obetener el id del libro subido para el XML
             $id->execute();
             $id = $id->fetchAll();
             $id =$id[0][0];
