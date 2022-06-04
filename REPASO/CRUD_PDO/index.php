@@ -24,6 +24,9 @@ setColor();
 //si queremos que que la parte de loogin no se afecte, ponerlo despues
 
 
+
+
+
 //Parte de Logueo-------------------------------------------------
 session_start();
 $login = new Login();
@@ -37,6 +40,9 @@ if(!isset($_SESSION['name'])){
 if(isset($_GET['sdestroy'])){
     $login->logout();
 }
+
+
+
 
 
 //Parte de visualizacion y CRUD de Libros-------------------------
