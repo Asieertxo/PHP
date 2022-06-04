@@ -51,8 +51,11 @@ class Book extends Conexion{
     public function showBook($order){
         $result = self::selectBook($order);
 
-        echo "<dic class='contenedor'>";
-            echo "<a class='verde boton' href='./index.php?boton=insert'>ADD +</a>";
+        echo "<h1>Bienvenido " . $_SESSION['name'] . "</h1>";
+        echo "<div class='contenedor'>";
+            if($_SESSION['name'] == 'asier'){
+                echo "<a class='verde boton' href='./index.php?boton=insert'>ADD +</a>";
+            }
             echo "<table class='tabla'>";
                 echo "<tr>";
                     echo "<td><b><a href='./index.php?order=id'>ID:</a></b></td>";
@@ -61,7 +64,9 @@ class Book extends Conexion{
                     echo "<td><b><a href='./index.php?order=author'>Author:</a></b></td>";
                     echo "<td><b><a href='./index.php?order=stock'>Stock:</a></b></td>";
                     echo "<td><b><a href='./index.php?order=price'>Price:</a></b></td>";
-                    echo "<td><b>Modificar:</b></td>";
+                    if($_SESSION['name'] == 'asier'){
+                        echo "<td><b>Modificar:</b></td>";
+                    }
                 echo "</tr>";
             while($registro = $result->fetch(PDO::FETCH_ASSOC)){
                 echo "<tr>";
@@ -71,12 +76,15 @@ class Book extends Conexion{
                     echo "<td>$registro[author]</td>";
                     echo "<td>$registro[stock]</td>";
                     echo "<td>$registro[price]€</td>";
-                    echo "<td><a class='verde' href='./index.php?boton=update&id=$registro[id]'>Modify</a><a class='rojo' href='./index.php?boton=delete&id=$registro[id]&isbn=$registro[isbn]&title=$registro[title]&author=$registro[author]'>Delete</a></td>";
-                    echo "</tr>";
+                    if($_SESSION['name'] == 'asier'){
+                        echo "<td><a class='verde' href='./index.php?boton=update&id=$registro[id]'>Modify</a><a class='rojo' href='./index.php?boton=delete&id=$registro[id]&isbn=$registro[isbn]&title=$registro[title]&author=$registro[author]'>Delete</a></td>";
+                    }
+                echo "</tr>";
             }
             $result->closeCursor();
             echo "</table>";
         echo "<div>";
+        echo "<a href='./index.php?sdestroy=destroy'>Cerrar Sesion</a>";
     }
 
     public function insertBook(){
@@ -89,7 +97,7 @@ class Book extends Conexion{
                 $stmt->bindParam(':price', $this->price);
             $stmt->execute();
 
-            $id = $this->conn->prepare("SELECT MAX(id) FROM book");
+            $id = $this->conn->prepare("SELECT MAX(id) FROM book");//obetener el id del libro subido para el XML
             $id->execute();
             $id = $id->fetchAll();
             $id =$id[0][0];
@@ -152,7 +160,7 @@ class Book extends Conexion{
             }
         }
 
-        $result = self::selectBook();
+        $result = self::selectBook('id');//hay que decirle que lo ordene por el ID
         while($registro = $result->fetch(PDO::FETCH_ASSOC)){
             insertinXML($registro['id'], $registro['isbn'], $registro['title'], $registro['author']);
         }

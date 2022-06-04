@@ -29,6 +29,7 @@ class Conexion{
                 try{
                     $this->conn = new PDO("mysql:host=$this->server; dbname=$this->dbname", $this->user, $this->pass2);
                     $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $this->pass1 = $this->pass2;
                 }catch(PDOException $e){
                     if($e->getCode() == '1045'){
                         echo "SU USUARIO O CONTRASEÑA INCORRECTO<br><br>" . $e->getMessage();
@@ -64,7 +65,7 @@ class Conexion{
 
     
     public function createBBDD(){
-        $conn = new PDO("mysql:host=$this->server", $this->user, $this->pass);
+        $conn = new PDO("mysql:host=$this->server", $this->user, $this->pass1);
         $stmt = $conn->prepare("CREATE DATABASE libros");//como pasar libros por parametro
             //$stmt->bindParam(':bbdd', $this->dbname);
         $stmt->execute();

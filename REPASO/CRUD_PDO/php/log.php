@@ -10,11 +10,13 @@ function logXML($id, $isbn, $title, $author, $action){
     }
     $date = date('Y-m-d-h-h-s');
     $registro = $xmlFile->logs->{$action.$s}->addChild($action);
+    $registro -> addChild('date', $date);
+    $registro -> addChild('user', $_SESSION['name']);
+    $registro = $xmlFile->logs->{$action.$s}->$action->addChild('data');
     $registro -> addAttribute('ID', $id);
     $registro -> addChild('isbn', $isbn);
     $registro -> addChild('title', $title);
     $registro -> addChild('author', $author);
-    $registro -> addChild('date', $date);
 
     file_put_contents("./xml/log.xml", $xmlFile -> asXML());
 
@@ -38,7 +40,6 @@ function insertinXML($id, $isbn, $title, $author){
     $registro -> addChild('isbn', $isbn);
     $registro -> addChild('title', $title);
     $registro -> addChild('author', $author);
-    $registro -> addChild('date', $date);
 
     file_put_contents("./xml/log.xml", $xmlFile -> asXML());
 }
