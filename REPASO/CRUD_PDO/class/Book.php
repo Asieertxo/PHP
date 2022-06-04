@@ -85,6 +85,7 @@ class Book extends Conexion{
             echo "</table>";
         echo "<div>";
         echo "<a href='./index.php?sdestroy=destroy'>Cerrar Sesion</a>";
+        echo "<a href='./index.php?cookies=getcookies'>Conf</a>";
     }
 
     public function insertBook(){

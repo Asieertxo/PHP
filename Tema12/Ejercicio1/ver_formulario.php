@@ -1,7 +1,7 @@
 <?php
-global $color_fondo;
-global $color_letra;
-global $idioma;
+$color_fondo;
+$color_letra;
+$idioma = 'español';
 
 include "./funciones.php";
 

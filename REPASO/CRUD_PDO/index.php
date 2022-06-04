@@ -8,12 +8,24 @@ spl_autoload_register('autocarga');
 
 require "./php/log.php";
 require "./php/formularios.php";
+require "./php/cookies.php";
 
 
 
- 
-session_start();
+//Parte de Cookies------------------------------------------------
+if(isset($_GET['cookies'])){
+    if($_GET['cookies'] == 'getcookies'){
+        formcookies();
+    }elseif($_GET['cookies'] == 'putcookies'){
+        cookies();
+    }
+}
+setColor();
+//si queremos que que la parte de loogin no se afecte, ponerlo despues
+
+
 //Parte de Logueo-------------------------------------------------
+session_start();
 $login = new Login();
 if(isset($_POST['register']) || isset($_GET['register'])){
     registerform();
@@ -25,8 +37,6 @@ if(!isset($_SESSION['name'])){
 if(isset($_GET['sdestroy'])){
     $login->logout();
 }
-
-
 
 
 //Parte de visualizacion y CRUD de Libros-------------------------
