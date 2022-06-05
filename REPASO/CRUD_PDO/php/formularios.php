@@ -79,7 +79,7 @@ function registerform(){
             $birthday = $_POST['birthday'];
             $pass = $_POST['pass'];
 
-            registerform2();
+            registerform2($user, $email, $sex, $birthday, $pass);
             die();
         }else{
             registerform1();
@@ -96,45 +96,44 @@ function registerform(){
         }
         
     }
+}
 
+function registerform1(){
+    echo<<<EOD
+        <div class='contenedor'>
+            <h2>Elije Opciones</h2></br>
+            <form action="./index.php?register=register" method="POST" enctype="multipart/form-data">
+                <input type="text" name="user" placeholder="usuario"/>
+                <input type="email" name="email" placeholder="email"/>
+                <select name="sex">
+                    <option value="hombre" selected>Hombre</option>
+                    <option value="mujer">Mujer</option>
+                </select>
+                <input type="date" name="birthday""/>
+                <input type="password" name="pass" placeholder="contraseña"/>
+                <input type="submit" name="register" value="Registrarse"/>
+            </form>
+            <a href= './index.php'>Atras</a>
+        </div>
+    EOD;
+}
 
-    function registerform1(){
-        echo<<<EOD
-            <div class='contenedor'>
-                <h2>Elije Opciones</h2></br>
-                <form action="./index.php?register=register" method="POST" enctype="multipart/form-data">
-                    <input type="text" name="user" placeholder="usuario"/>
-                    <input type="email" name="email" placeholder="email"/>
-                    <select name="sex">
-                        <option value="hombre" selected>Hombre</option>
-                        <option value="mujer">Mujer</option>
-                    </select>
-                    <input type="date" name="birthday""/>
-                    <input type="password" name="pass" placeholder="contraseña"/>
-                    <input type="submit" name="register" value="Registrarse"/>
-                </form>
-                <a href= './index.php'>Atras</a>
-            </div>
-        EOD;
-    }
-
-    function registerform2(){
-        echo<<<EOD
-            <div class='contenedor'>
-                <h2>Repite la contraseña</h2></br>
-                <form action="./index.php?register=register" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="user" value="$user"/>
-                    <input type="hidden" name="email" value="$email"/>
-                    <input type="hidden" name="sex" value="$sex"/>
-                    <input type="hidden" name="birthday" value="$birthday"/>
-                    <input type="hidden" name="pass" value="$pass"/>
-                    <input type="password" name="pass2" placeholder="contraseña"/>
-                    <input type="submit" name="register" value="Registrarse"/>
-                </form>
-                <a href= './index.php'>Atras</a>
-            </div>
-        EOD;
-    }
+function registerform2($user, $email, $sex, $birthday, $pass){
+    echo<<<EOD
+        <div class='contenedor'>
+            <h2>Repite la contraseña</h2></br>
+            <form action="./index.php?register=register" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="user" value="$user"/>
+                <input type="hidden" name="email" value="$email"/>
+                <input type="hidden" name="sex" value="$sex"/>
+                <input type="hidden" name="birthday" value="$birthday"/>
+                <input type="hidden" name="pass" value="$pass"/>
+                <input type="password" name="pass2" placeholder="contraseña"/>
+                <input type="submit" name="register" value="Registrarse"/>
+            </form>
+            <a href= './index.php'>Atras</a>
+        </div>
+    EOD;
 }
 
 ?>
