@@ -18,10 +18,20 @@ class Book extends Conexion{
     }
 
 
-    public function selectBook($order){
+    public function selectBook($order, $option, $select, $signo){
         try{
-            $stmt = $this->conn->prepare("SELECT * FROM book ORDER BY $order");//order no deja meterlo como parametro
-                //$stmt->bindParam(':order', $order, PDO::PARAM_STR);
+            if($option == null && $select == null){
+                $stmt = $this->conn->prepare("SELECT * FROM book ORDER BY $order");//order no deja meterlo como parametro
+            }else{
+                if($signo == null){
+                    $stmt = $this->conn->prepare("SELECT * FROM book WHERE $option = :select");//option no deja meterlo como parametro
+                    $stmt->bindParam(':select', $select);
+                }else{
+                    echo $signo . $option . $select;
+                    $stmt = $this->conn->prepare("SELECT * FROM book WHERE $option $signo :select");//signo no deja meterlo como parametro
+                    $stmt->bindParam(':select', $select);
+                }
+            }
             $stmt->execute();
             return $stmt;
         }catch(PDOException $e){
@@ -48,14 +58,14 @@ class Book extends Conexion{
         }
     }
 
-    public function showBook($order){
-        $result = self::selectBook($order);
-
+    public function showBook($order, $option = null, $select = null, $signo = null){
+        $result = self::selectBook($order, $option, $select, $signo);
         echo "<h1>Bienvenido " . $_SESSION['name'] . "</h1>";
         echo "<div class='contenedor'>";
             if($_SESSION['name'] == 'asier'){
                 echo "<a class='verde boton' href='./index.php?boton=insert'>ADD +</a>";
             }
+            echo "<a class='verde boton' href='./index.php?boton=search'>Search</a>";
             echo "<table class='tabla'>";
                 echo "<tr>";
                     echo "<td><b><a href='./index.php?order=id'>ID:</a></b></td>";
@@ -86,6 +96,7 @@ class Book extends Conexion{
         echo "<div>";
         echo "<a href='./index.php?sdestroy=destroy'>Cerrar Sesion</a>";
         echo "<a href='./index.php?cookies=getcookies'>Conf</a>";
+        echo "<a href='./index.php'>Refresh</a>";
     }
 
     public function insertBook(){

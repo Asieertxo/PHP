@@ -60,14 +60,25 @@ if(isset($_GET['boton'])){
         header("Refresh:3; url=index.php");
     }elseif($_GET['boton'] == "update"){
         formUpdateBook();
+    }elseif($_GET['boton'] == "search"){
+        header("Refresh:0; url=./php/search.php?boton=search");
     }
-}else{
-    if(!isset($_GET['order'])){
-        $order = 'id';
+}else{//parte de ordenacion o de acotar la busqueda
+    if(isset($_GET['option']) && isset($_GET['select'])){
+        if(isset($_GET['signo'])){
+            $book->showBook('id', $_GET['option'], $_GET['select'], $_GET['signo']);
+        }else{
+            $book->showBook('id', $_GET['option'], $_GET['select']);
+        }
     }else{
-        $order = $_GET['order'];
+        if(!isset($_GET['order'])){
+            $order = 'id';
+        }else{
+            $order = $_GET['order'];
+        }
+        $book->showBook($order);
     }
-    $book->showBook($order);
+    
 }
 
 

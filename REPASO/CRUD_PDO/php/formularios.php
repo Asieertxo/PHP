@@ -136,4 +136,48 @@ function registerform2($user, $email, $sex, $birthday, $pass){
     EOD;
 }
 
+function formSearch(){
+    echo<<<EOD
+        <div class='contenedor'>
+            <h2>Repite la contraseña</h2></br>
+            <form action="./search.php?search=option" method="POST" enctype="multipart/form-data">
+                <select name="select">
+                    <option value="isbn" selected>ISBN</option>
+                    <option value="title">Title</option>
+                    <option value="author">Author</option>
+                </select>
+                <input type="text" name="option" placeholder="busqueda"/>
+                <input type="submit" name="search" value="Search"/>
+            </form>
+            <a href= './search.php?search=cant'>Stock o Precio</a>
+            <a href= './../index.php'>Atras</a>
+        </div>
+    EOD;
+}
+
+function formSearchCant(){
+    echo<<<EOD
+        <div class='contenedor'>
+            <h2>Repite la contraseña</h2></br>
+            <form action="./search.php" method="POST" enctype="multipart/form-data">
+                <select name="option">
+                    <option value="stock" selected>stock</option>
+                    <option value="price">price</option>
+                </select>
+                <select name="signo">
+                    <option value="=" selected>=</option>
+                    <option value=">">></option>
+                    <option value="<"><</option>
+                    <option value=">=">>=</option>
+                    <option value="<="><=</option>
+                </select>
+                <input type="number" name="select" placeholder="cantidad"/>
+                <input type="submit" name="search" value="Search"/>
+            </form>
+            <a href= './search.php?search=cant'>Stock o Precio</a>
+            <a href= './../index.php'>Atras</a>
+        </div>
+    EOD;
+}
+
 ?>
