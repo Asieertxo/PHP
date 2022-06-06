@@ -1,5 +1,10 @@
 <?php
 
+function autocarga($clase){
+    require "./class/" . $clase . ".php";
+}
+spl_autoload_register('autocarga');
+
 //Conexion
 
 __construct()
