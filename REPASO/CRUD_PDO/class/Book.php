@@ -27,7 +27,6 @@ class Book extends Conexion{
                     $stmt = $this->conn->prepare("SELECT * FROM book WHERE $option = :select");//option no deja meterlo como parametro
                     $stmt->bindParam(':select', $select);
                 }else{
-                    echo $signo . $option . $select;
                     $stmt = $this->conn->prepare("SELECT * FROM book WHERE $option $signo :select");//signo no deja meterlo como parametro
                     $stmt->bindParam(':select', $select);
                 }
