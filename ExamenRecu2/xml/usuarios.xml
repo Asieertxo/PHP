@@ -1,0 +1,52 @@
+<usuarios>
+<usuario id="7369">
+<mail>smith21@gmail.com</mail>
+<address> </address>
+<nombreUser>SMITH</nombreUser>
+</usuario>
+<usuario id="7499">
+<mail>allen21@gmail.com</mail>
+<address> Romero 2</address>
+<nombreUser>ALLEN</nombreUser>
+</usuario>
+<usuario id="7521">
+<mail>ward21@gmail.com</mail>
+<address>Velazquez 20</address>
+<nombreUser>WARD</nombreUser>
+</usuario>
+<usuario id="7566">
+<mail>jones21@gmail.com</mail>
+<address> Castellana 13</address>
+<nombreUser>JONES</nombreUser>
+</usuario>
+<usuario id="7654">
+<mail>martin21@gmail.com</mail>
+<address>Gran Via 23</address>
+<nombreUser>MARTIN</nombreUser>
+</usuario>
+<usuario id="7698">
+<mail>blake21@gmail.com</mail>
+<address> </address>
+<nombreUser>BLAKE</nombreUser>
+</usuario>
+<usuario id="7782">
+<mail>clark21@gmail.com</mail>
+<address>Velazquez 77</address>
+<nombreUser>CLARK</nombreUser>
+</usuario>
+<usuario id="7888">
+<mail>scott21@gmail.com</mail>
+<address> Castellana 13</address>
+<nombreUser>SCOTT</nombreUser>
+</usuario>
+<usuario id="7999">
+<mail>king21@gmail.com</mail>
+<address>Velazquez 11</address>
+<nombreUser>KING</nombreUser>
+</usuario>
+<usuario id="7990">
+<mail>turner21@gmail.com</mail>
+<address/>
+<nombreUser>TURNER</nombreUser>
+</usuario>
+</usuarios>
